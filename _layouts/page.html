@@ -19,9 +19,49 @@ layout: default
 
 <!-- Main Content -->
 <div class="container">
-	<div class="row">
-					{{ content }}
-	</div>
+  <div class="row">
+    {% if page.images %}
+      <div class="shop-item-image gallery masonry-gallery">
+        {% for image in page.images %}
+          {% assign img = image.image_path | default: image %}
+          <figure class="gallery-item">
+            <figure class="effect-selena">
+              <header class='gallery-icon'>
+                <a href="{{ site.url }}{{ site.baseurl }}{{ img }}" class="popup" title="{{ page.product_name }}" data-caption="¥{{ page.product_price }}">
+                  <img src="{{ site.url }}{{ site.baseurl }}{{ img }}">
+                </a>
+              </header>
+              <figcaption class='gallery-caption'>
+                <div class="entry-summary">
+                  <h3>{{ page.product_name }}</h3>
+                  <p>¥{{ page.product_price }}</p>
+                </div>
+              </figcaption>
+            </figure>
+          </figure>
+        {% endfor %}
+      </div>
+    {% elsif page.image %}
+      <div class="shop-item-image gallery masonry-gallery">
+        <figure class="gallery-item">
+          <figure class="effect-selena">
+            <header class='gallery-icon'>
+              <a href="{{ site.url }}{{ site.baseurl }}{{ page.image }}" class="popup" title="{{ page.product_name }}" data-caption="¥{{ page.product_price }}">
+                <img src="{{ site.url }}{{ site.baseurl }}{{ page.image }}">
+              </a>
+            </header>
+            <figcaption class='gallery-caption'>
+              <div class="entry-summary">
+                <h3>{{ page.product_name }}</h3>
+                <p>¥{{ page.product_price }}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </figure>
+      </div>
+    {% endif %}
+    {{ content }}
+  </div>
 </div>
 
 <!-- jQuery -->    
@@ -30,3 +70,23 @@ layout: default
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{{ site.baseurl }}/js/main.min.js "></script>
+{% if page.images or page.image %}
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+<script type="text/javascript">
+  $(document).ready(function($) {
+    $('a.popup').magnificPopup({
+      type: 'image',
+      gallery:{
+        enabled:true,
+        navigateByImgClick: true,
+        preload: [0,1]
+      },
+      image: {
+        titleSrc: function(item) {
+          return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+        }
+      }
+    });
+  });
+</script>
+{% endif %}

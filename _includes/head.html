@@ -28,6 +28,11 @@
      <link rel="stylesheet" href="{{ "/css/super-search.css" | prepend: site.baseurl }}">
     <link rel="stylesheet" href="{{ "/css/magnificpopup.css" | prepend: site.baseurl }}">
 
+    <!-- Shop-specific CSS -->
+    {% if page.active == 'shop' %}
+    <link rel="stylesheet" href="{{ "/css/photorama-shop.css" | prepend: site.baseurl }}" type="text/css">
+    {% endif %}
+
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,600&subset=latin,latin-ext' rel='stylesheet' type='text/css'>

@@ -1,0 +1,34 @@
+/*
+ * Dedicated styles for the Photorama Shop page to avoid conflicts.
+ */
+
+.photorama-shop-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align items to the start */
+  margin: 0 -1%; /* Negative margin to counteract padding on items */
+}
+
+.photorama-shop-item {
+  box-sizing: border-box; /* Important for consistent sizing */
+  width: 18%; /* 5 items per row (100% / 5 = 20%, minus margin) */
+  margin: 0 1% 2em 1%; /* Margin for spacing */
+  text-align: center;
+}
+
+.photorama-shop-item img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #eee;
+}
+
+.photorama-shop-item h3 {
+  font-size: 1rem;
+  margin: 0.5em 0 0.25em 0;
+}
+
+.photorama-shop-item p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
