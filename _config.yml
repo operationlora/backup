@@ -60,6 +60,12 @@ gems:
  - jekyll-paginate
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
+# Add shop collection for hot-pluggable Shop tab
+collections:
+  shop:
+    output: true
+    permalink: /shop/:path/
+
 # SiteMap
 sitemap:
     file: "/sitemap.xml"
