@@ -1,5 +1,6 @@
 ---
 layout: home
+body_class: fullscreen
 main-title: "PHOT&#8226;O&#8226;RAMA"
 subtitle: "Photo Journal"
 description: "Photography and more"
@@ -11,30 +12,6 @@ images:
  - image_path: /img/slider/home03.jpg
    gallery-folder: /img/slider/
 ---
-
-
-<html class="no-js" lang="en">
-<head>
-	<meta content="charset=utf-8">
-
-<!-- CSS -->
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="{{ site.baseurl }}/css/galleries.css" media="screen" />
-<link rel="stylesheet" href="{{ site.baseurl }}/css/WYSIWYG.css" media="screen" />
-
-
-
-	<!-- Modernizr -->
-  <script src="{{ site.baseurl }}/js/modernizr.js"></script>
-
-
-
-  
-
-</head>
-
-<body class="fullscreen">
 
 <!-- MAIN CONTENT SECTION  _____________________________________________-->
 	<section id="content" role="main">
@@ -135,13 +112,14 @@ color:#dddddd; target="_blank" title="Email">
 					
 		</ul>	
 	</div>
+<!-- Modernizr (feature detection for galleries) -->
+<script src="{{ site.baseurl }}/js/modernizr.js"></script>
 
-  
 <!-- jQuery -->
-  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-  <script src="{{ site.baseurl }}/js/retina.min.js"></script> 
+<script src="{{ site.baseurl }}/js/retina.min.js"></script> 
 
 <!-- include mousewheel plugins -->
 <script src="{{ site.baseurl }}/js/jquery.mousewheel.min.js"></script>
@@ -153,7 +131,3 @@ color:#dddddd; target="_blank" title="Email">
 <script src="{{ site.baseurl }}/js/jquery.lazylinepainter.min.js"></script>
 <!-- include custom script -->
 <script src="{{ site.baseurl }}/js/scripts.js"></script>
-
-
-       </body>
-    </html>

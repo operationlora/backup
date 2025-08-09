@@ -7,7 +7,7 @@
 <link rel="icon" href="{{ root_url }}/favicon.ico?" type="image/x-icon">
 </head>
 
-<body>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
 
 
     {% include nav.html %}
@@ -17,4 +17,3 @@
     </body>
 
 </html>
-

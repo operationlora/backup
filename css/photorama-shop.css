@@ -3,16 +3,13 @@
  */
 
 .photorama-shop-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; /* Align items to the start */
-  margin: 0 -1%; /* Negative margin to counteract padding on items */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 
 .photorama-shop-item {
-  box-sizing: border-box; /* Important for consistent sizing */
-  width: 32%; /* 3 items per row: 3*32% + 2 gaps (2% each) = 100% */
-  margin: 0 1% 2em 1%; /* Margin for spacing */
+  box-sizing: border-box;
   text-align: center;
 }
 
@@ -22,7 +19,7 @@
   height: auto;
   aspect-ratio: 3 / 2; /* Reserve space to avoid CLS */
   object-fit: cover;   /* Crop differing ratios uniformly */
-  border: 1px solid #eee;
+  border: 1px solid var(--border, #eee);
 }
 
 .photorama-shop-item h3 {
@@ -44,21 +41,17 @@
 
 /* Decouple hover color to Shop page only */
 .photorama-shop-grid a:hover {
-  color: #FFD700;
+  color: var(--accent, #FFD700);
 }
 
 /* Accessible focus indication within Shop only */
 .photorama-shop-item a:focus-visible {
-  outline: 2px solid #FFD700;
+  outline: 2px solid var(--accent, #FFD700);
   outline-offset: 2px;
 }
 
 /* Responsive layout */
 @media (max-width: 992px) {
-  /* Tablet: 2 items per row */
-  .photorama-shop-item {
-    width: 49%; /* 2x(49% + 2% margin) - 2% grid offset = 100% */
-  }
   /* Slightly smaller headings on tablet */
   .photorama-shop-item h3 {
     font-size: 1.1rem;
@@ -66,22 +59,13 @@
 }
 
 @media (max-width: 600px) {
-  /* Mobile: 1 item per row with edge-to-edge layout */
-  .photorama-shop-grid { margin: 0; }
-  .photorama-shop-item {
-    width: 100%;
-    margin: 0 0 1.5em 0; /* remove side gutters on small screens */
-  }
+  /* Mobile: natural single column with grid */
+  .photorama-shop-grid { gap: 20px; }
   .photorama-shop-item h3 { font-size: 1.1rem; }
   .photorama-shop-item p { font-size: 1rem; }
 }
 
 /* Ultra-wide desktop optimizations */
 @media (min-width: 1400px) {
-  .photorama-shop-grid {
-    justify-content: center; /* center the 3 columns visually */
-  }
-  .photorama-shop-item {
-    width: 30%; /* slightly narrower columns for wide screens */
-  }
+  .photorama-shop-grid { gap: 28px; }
 }
