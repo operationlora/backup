@@ -27,15 +27,15 @@ layout: default
           <figure class="gallery-item">
             <figure class="effect-selena">
               <header class='gallery-icon'>
-                <a href="{{ site.url }}{{ site.baseurl }}{{ img }}" class="popup" title="{{ page.product_name }}" data-caption="¥{{ page.product_price }}">
+                <a href="{{ site.url }}{{ site.baseurl }}{{ img }}" class="popup" title="{{ page.product_name | escape }}" data-caption="¥{{ page.product_price }}">
                   <img src="{{ site.url }}{{ site.baseurl }}{{ img }}"
-                       alt="{{ page.product_name | default: page.title }} image {{ forloop.index }}"
+                       alt="{{ page.product_name | default: page.title | escape }} image {{ forloop.index }}"
                        loading="lazy" decoding="async">
                 </a>
               </header>
               <figcaption class='gallery-caption'>
-                <div class="entry-summary">
-                  <h3>{{ page.product_name }}</h3>
+              <div class="entry-summary">
+                  <h3>{{ page.product_name | escape }}</h3>
                   <p>¥{{ page.product_price }}</p>
                 </div>
               </figcaption>
@@ -48,15 +48,15 @@ layout: default
         <figure class="gallery-item">
           <figure class="effect-selena">
             <header class='gallery-icon'>
-              <a href="{{ site.url }}{{ site.baseurl }}{{ page.image }}" class="popup" title="{{ page.product_name }}" data-caption="¥{{ page.product_price }}">
+              <a href="{{ site.url }}{{ site.baseurl }}{{ page.image }}" class="popup" title="{{ page.product_name | escape }}" data-caption="¥{{ page.product_price }}">
                 <img src="{{ site.url }}{{ site.baseurl }}{{ page.image }}"
-                     alt="{{ page.product_name | default: page.title }}"
+                     alt="{{ page.product_name | default: page.title | escape }}"
                      loading="lazy" decoding="async">
               </a>
             </header>
             <figcaption class='gallery-caption'>
               <div class="entry-summary">
-                <h3>{{ page.product_name }}</h3>
+                <h3>{{ page.product_name | escape }}</h3>
                 <p>¥{{ page.product_price }}</p>
               </div>
             </figcaption>
@@ -66,7 +66,7 @@ layout: default
     {% endif %}
     {% if page.stripe_link %}
       <div class="product-cta" style="margin: 1rem 0;">
-        <a class="btn btn-primary" href="{{ page.stripe_link }}" target="_blank" rel="noopener">立即購買</a>
+        <a class="btn btn-primary" href="{{ page.stripe_link }}" target="_blank" rel="noopener noreferrer">立即購買</a>
       </div>
     {% endif %}
     {{ content }}
@@ -75,8 +75,8 @@ layout: default
 
 <!-- jQuery -->    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{{ site.baseurl }}/js/main.min.js "></script>
 {% if page.images or page.image %}

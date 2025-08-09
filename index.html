@@ -38,7 +38,7 @@ images:
 
 <a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
 <img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"
-     alt="{{ page.title | default: site.title }} image {{ forloop.index }}"
+     alt="{{ page.title | default: site.title | escape }} image {{ forloop.index }}"
      {% if forloop.first %}fetchpriority="high"{% endif %}></a>
 	
 				</header>	
@@ -59,53 +59,46 @@ images:
 
                  {% if site.facebook_username %}
 			<li>
-   <a href="https://facebook.com/{{ site.facebook_username }}" style="
-color:#dddddd; target="_blank" title="Facebook">
+   <a href="https://facebook.com/{{ site.facebook_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Facebook">
                        <i class="fa fa-facebook"></i>
                      </span>
 </a></li>
     {% endif %}
  {% if site.twitter_username %}
 			<li>
-   <a href="https://twitter.com/{{ site.twitter_username }}" style="
-color:#dddddd; target="_blank" title="Twitter">
+   <a href="https://twitter.com/{{ site.twitter_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Twitter">
                        <i class="fa fa-twitter"></i>
                      </span>
 </a></li>
     {% endif %}
                 {% if site.instagram_username %}
 			<li>
-   <a href="https://instagram.com/{{ site.instagram_username }}" style="
-color:#dddddd; target="_blank" title="Instagram">
+   <a href="https://instagram.com/{{ site.instagram_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Instagram">
                        <i class="fa fa-instagram"></i>
                      </span>
 </a></li>
     {% endif %}
                     {% if site.flickr_username %}
 						<li>
-   <a href="https://flickr.com/photos/{{ site.flickr_username }}" style="
-color:#dddddd; target="_blank" title="Flickr">
+   <a href="https://flickr.com/photos/{{ site.flickr_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Flickr">
               <i class="fa fa-flickr"></i>
                      </span>
  </a></li>	
      {% endif %}
                     {% if site.deviantart_username %}
 			<li>
-   <a href="http://{{ site.deviantart_username }}.deviantart.com" style="
-color:#dddddd; target="_blank" title="DeviantArt">
+   <a href="https://{{ site.deviantart_username }}.deviantart.com" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="DeviantArt">
 <i class="fa fa-deviantart"></i> </span>
 </a></li>	
     {% endif %}
                     {% if site.github_username %}
                 <li>
-   <a href="https://github.com/{{ site.github_username }}" style="
-color:#dddddd; target="_blank" title="Github">
+   <a href="https://github.com/{{ site.github_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Github">
               <i class="fa fa-github"></i>
                      </span>
                    {% endif %}
 <li>
-    <a href="mailto:{{ site.email }}" style="
-color:#dddddd; target="_blank" title="Email">
+    <a href="mailto:{{ site.email }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Email">
               <i class="fa fa-envelope-o"></i></span>
           </a> </li>
 	
@@ -116,8 +109,8 @@ color:#dddddd; target="_blank" title="Email">
 <script src="{{ site.baseurl }}/js/modernizr.js"></script>
 
 <!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script src="{{ site.baseurl }}/js/retina.min.js"></script> 
 
