@@ -23,14 +23,31 @@
 }
 
 .photorama-shop-item h3 {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.35;
   margin: 0.5em 0 0.25em 0;
 }
 
 .photorama-shop-item p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #555;
   margin: 0;
+}
+
+/* Ensure the whole card is a clear interactive target */
+.photorama-shop-item a {
+  display: block;
+}
+
+/* Decouple hover color to Shop page only */
+.photorama-shop-grid a:hover {
+  color: #FFD700;
+}
+
+/* Accessible focus indication within Shop only */
+.photorama-shop-item a:focus-visible {
+  outline: 2px solid #FFD700;
+  outline-offset: 2px;
 }
 
 /* Responsive layout */
@@ -38,6 +55,10 @@
   /* Tablet: 2 items per row */
   .photorama-shop-item {
     width: 49%; /* 2x(49% + 2% margin) - 2% grid offset = 100% */
+  }
+  /* Slightly smaller headings on tablet */
+  .photorama-shop-item h3 {
+    font-size: 1.1rem;
   }
 }
 
@@ -48,8 +69,8 @@
     width: 100%;
     margin: 0 0 1.5em 0; /* remove side gutters on small screens */
   }
-  .photorama-shop-item h3 { font-size: 0.95rem; }
-  .photorama-shop-item p { font-size: 0.9rem; }
+  .photorama-shop-item h3 { font-size: 1.1rem; }
+  .photorama-shop-item p { font-size: 1rem; }
 }
 
 /* Ultra-wide desktop optimizations */

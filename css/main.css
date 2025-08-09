@@ -116,16 +116,7 @@ hr.small {
     color: #0085a1;
   }
   
-  @import url(http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
-
-@import "bootstrap.min.css";
-@import "magnificpopup.css";
-@import "journal.css";
-@import "galleries.css";
-  /* Removed: legacy @import 'shop.css' (file does not exist) */
-@import "tags-wrap.css";
-@import "WYSIWYG.css";
+  /* Removed invalid in-file @import rules; managed via _includes/head.html */
 
 
 body {
