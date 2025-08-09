@@ -1,20 +1,21 @@
 ---
 layout: product
 title: "Sample Product"
-product_name: "Sample Sunset Print"
+product_name: "手工椰殼蠟燭"
 product_price: 29.99
 stripe_link: https://buy.stripe.com/test_1234567890abcdef
 images:
-  - /gallery/albums/alb01.jpg
-  - /gallery/albums/alb02.jpg
-  - /gallery/albums/alb03.jpg
+  - /gallery/albums/candle1.webp
+  - /gallery/albums/candle2.webp
+  - /gallery/albums/candle3.webp
 ---
 
-精選日落攝影作品高畫質輸出，適合客廳或工作室佈置。
+手工椰殼香氛蠟燭，高質感裝飾與療癒香氣兼具
+以天然大豆蠟搭配乾燥花材、香料與木芯製成，每款皆為獨一無二的手工作品，適合臥室、書房或工作空間點綴氛圍。
 
-- 尺寸：A3（297 x 420 mm）
-- 材質：專業級相紙，霧面處理
-- 內容物：影像輸出（不含框）
-- 出貨時間：下單後 3–5 個工作天
+- 尺寸：約直徑 10–12 cm，高約 6 cm（手工製作略有差異）
+- 材質：天然大豆蠟、椰殼容器、木芯、乾燥花材與香料
+- 香味：依款式搭配不同植物香氛（如花香、香料或果香）
+- 出貨時間：下單後 7–11 個工作天
 
-若需不同尺寸或材質，請於下單後備註或來信詢問。
+若需客製香味或花材搭配，請於下單後備註或來信詢問。

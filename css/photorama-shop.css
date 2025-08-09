@@ -11,7 +11,7 @@
 
 .photorama-shop-item {
   box-sizing: border-box; /* Important for consistent sizing */
-  width: 18%; /* 5 items per row (100% / 5 = 20%, minus margin) */
+  width: 32%; /* 3 items per row: 3*32% + 2 gaps (2% each) = 100% */
   margin: 0 1% 2em 1%; /* Margin for spacing */
   text-align: center;
 }
@@ -31,4 +31,33 @@
   font-size: 0.9rem;
   color: #555;
   margin: 0;
+}
+
+/* Responsive layout */
+@media (max-width: 992px) {
+  /* Tablet: 2 items per row */
+  .photorama-shop-item {
+    width: 49%; /* 2x(49% + 2% margin) - 2% grid offset = 100% */
+  }
+}
+
+@media (max-width: 600px) {
+  /* Mobile: 1 item per row with edge-to-edge layout */
+  .photorama-shop-grid { margin: 0; }
+  .photorama-shop-item {
+    width: 100%;
+    margin: 0 0 1.5em 0; /* remove side gutters on small screens */
+  }
+  .photorama-shop-item h3 { font-size: 0.95rem; }
+  .photorama-shop-item p { font-size: 0.9rem; }
+}
+
+/* Ultra-wide desktop optimizations */
+@media (min-width: 1400px) {
+  .photorama-shop-grid {
+    justify-content: center; /* center the 3 columns visually */
+  }
+  .photorama-shop-item {
+    width: 30%; /* slightly narrower columns for wide screens */
+  }
 }
