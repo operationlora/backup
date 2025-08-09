@@ -71,3 +71,28 @@ layout: default
 <!-- Lightweight, dependency-free behavior for image swapping -->
 <script src="{{ site.baseurl }}/js/shop-item.js"></script>
 
+{%- comment -%}
+  JSON-LD Product schema for SEO rich results
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ page.product_name | default: page.title | jsonify }},
+  "description": {{ page.description | default: content | strip_html | strip_newlines | truncate: 300 | jsonify }},
+  {%- if page.images -%}
+  "image": [{% for image in page.images %}{% assign img_src = image.image_path | default: image %}{{ img_src | absolute_url | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  {%- elsif page.image -%}
+  "image": [{{ page.image | absolute_url | jsonify }}],
+  {%- endif -%}
+  "offers": {
+    "@type": "Offer",
+    {%- if page.product_price -%}
+    "price": {{ page.product_price }},
+    "priceCurrency": {{ page.currency | default: site.currency | default: 'JPY' | jsonify }},
+    {%- endif -%}
+    "availability": "https://schema.org/InStock",
+    "url": {{ page.url | absolute_url | jsonify }}
+  }
+}
+</script>

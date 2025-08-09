@@ -28,7 +28,9 @@ layout: default
             <figure class="effect-selena">
               <header class='gallery-icon'>
                 <a href="{{ site.url }}{{ site.baseurl }}{{ img }}" class="popup" title="{{ page.product_name }}" data-caption="¥{{ page.product_price }}">
-                  <img src="{{ site.url }}{{ site.baseurl }}{{ img }}">
+                  <img src="{{ site.url }}{{ site.baseurl }}{{ img }}"
+                       alt="{{ page.product_name | default: page.title }} image {{ forloop.index }}"
+                       loading="lazy" decoding="async">
                 </a>
               </header>
               <figcaption class='gallery-caption'>
@@ -47,7 +49,9 @@ layout: default
           <figure class="effect-selena">
             <header class='gallery-icon'>
               <a href="{{ site.url }}{{ site.baseurl }}{{ page.image }}" class="popup" title="{{ page.product_name }}" data-caption="¥{{ page.product_price }}">
-                <img src="{{ site.url }}{{ site.baseurl }}{{ page.image }}">
+                <img src="{{ site.url }}{{ site.baseurl }}{{ page.image }}"
+                     alt="{{ page.product_name | default: page.title }}"
+                     loading="lazy" decoding="async">
               </a>
             </header>
             <figcaption class='gallery-caption'>

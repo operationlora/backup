@@ -17,8 +17,11 @@
 }
 
 .photorama-shop-item img {
-  max-width: 100%;
+  display: block;
+  width: 100%;
   height: auto;
+  aspect-ratio: 3 / 2; /* Reserve space to avoid CLS */
+  object-fit: cover;   /* Crop differing ratios uniformly */
   border: 1px solid #eee;
 }
 

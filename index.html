@@ -60,7 +60,9 @@ images:
 					<header class='gallery-icon'>
 
 <a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
-<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
+<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"
+     alt="{{ page.title | default: site.title }} image {{ forloop.index }}"
+     {% if forloop.first %}fetchpriority="high"{% endif %}></a>
 	
 				</header>	
 				</figure>
@@ -155,4 +157,3 @@ color:#dddddd; target="_blank" title="Email">
 
        </body>
     </html>
-
