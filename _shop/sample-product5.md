@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: product
 title: "Sample Product 5"
 image: /gallery/albums/alb05.jpg
 product_name: "Sample Cityscape Print"

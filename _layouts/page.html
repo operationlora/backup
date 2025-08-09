@@ -60,6 +60,11 @@ layout: default
         </figure>
       </div>
     {% endif %}
+    {% if page.stripe_link %}
+      <div class="product-cta" style="margin: 1rem 0;">
+        <a class="btn btn-primary" href="{{ page.stripe_link }}" target="_blank" rel="noopener">立即購買</a>
+      </div>
+    {% endif %}
     {{ content }}
   </div>
 </div>

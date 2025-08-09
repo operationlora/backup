@@ -5,15 +5,18 @@ description: "shop archive"
 active: shop
 header-img: "img/gallery-bg.jpg"
 ---
-
 <section id="content" role="main">
   <div class="wrapper">
     <h2>{{ page.title }}</h2>
     <div class="photorama-shop-grid">
       {% for item in site.shop %}
         <div class="photorama-shop-item">
-          <a href="{{ site.url }}{{ site.baseurl }}{{ item.url }}">
-            <img src="{{ site.url }}{{ site.baseurl }}{{ item.image }}">
+          {% assign first_img = item.images | first %}
+          {% assign item_image = item.image | default: first_img.image_path | default: first_img %}
+          <a href="{{ item.url | relative_url }}">
+            {% if item_image %}
+            <img src="{{ item_image | relative_url }}" alt="{{ item.product_name }}">
+            {% endif %}
             <h3>{{ item.product_name }}</h3>
             <p>¥{{ item.product_price }}</p>
           </a>

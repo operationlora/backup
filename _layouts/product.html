@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<div class="container product-page">
+  <div class="product-grid">
+    <div class="product-media">
+      {% if page.images %}
+        {% assign first_image = page.images[0] %}
+        {% assign first_src = first_image.image_path | default: first_image %}
+        <figure class="product-main" aria-label="Product image">
+          <img id="product-main-image"
+               src="{{ site.baseurl }}{{ first_src }}"
+               alt="{{ page.product_name | default: page.title }}"
+               fetchpriority="high">
+        </figure>
+        {% if page.images.size > 1 %}
+        <div class="product-thumbs" role="list" aria-label="More product images">
+          {% for image in page.images %}
+            {% assign img = image.image_path | default: image %}
+            <button class="product-thumb{% if forloop.first %} is-active{% endif %}"
+                    type="button"
+                    data-src="{{ site.baseurl }}{{ img }}"
+                    aria-label="View image {{ forloop.index }}">
+              <img src="{{ site.baseurl }}{{ img }}" alt="Thumbnail {{ forloop.index }}" loading="lazy">
+            </button>
+          {% endfor %}
+        </div>
+        {% endif %}
+      {% elsif page.image %}
+        <figure class="product-main" aria-label="Product image">
+          <img id="product-main-image"
+               src="{{ site.baseurl }}{{ page.image }}"
+               alt="{{ page.product_name | default: page.title }}"
+               fetchpriority="high">
+        </figure>
+      {% endif %}
+    </div>
+
+    <aside class="product-info">
+      <h1 class="product-title">{{ page.product_name | default: page.title }}</h1>
+      {% if page.product_price %}
+      <p class="product-price">¥{{ page.product_price }}</p>
+      {% endif %}
+
+      {% if page.stripe_link %}
+      <div class="product-actions">
+        <a class="btn btn-primary product-buy" href="{{ page.stripe_link }}" target="_blank" rel="noopener">立即購買</a>
+      </div>
+      {% endif %}
+
+      <div class="product-description">
+        {{ content }}
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% if page.stripe_link %}
+<div class="product-sticky-bar">
+  <div class="product-sticky-inner container">
+    <div class="sticky-price-title">
+      <strong>{{ page.product_name | default: page.title }}</strong>
+      {% if page.product_price %}<span>— ¥{{ page.product_price }}</span>{% endif %}
+    </div>
+    <a class="btn btn-primary product-buy" href="{{ page.stripe_link }}" target="_blank" rel="noopener">立即購買</a>
+  </div>
+  </div>
+{% endif %}
+
+<!-- Lightweight, dependency-free behavior for image swapping -->
+<script src="{{ site.baseurl }}/js/shop-item.js"></script>
+

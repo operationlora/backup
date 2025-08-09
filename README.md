@@ -153,6 +153,36 @@ I hope you will find it useful for your projects, photographic or not.
 ----------
 
 
+Getting Started (Local Development)
+===================================
+
+1) Configure your site
+- Edit `_config.yml` and set `url: "https://yourusername.github.io"` and `baseurl: "/your-repo-name"`. Update `nav` links if your paths change.
+
+2) Install and run Jekyll locally
+- Install Jekyll: `gem install jekyll` (Ruby required).
+- Serve locally: `jekyll serve --baseurl ''` then open `http://localhost:4000/`.
+
+3) Build for production
+- Build static files to `_site/`: `jekyll build`.
+- Do not commit `_site/`; GitHub Pages or your host will build from sources.
+
+4) Common tips
+- Place images in `img/` and use `{{ site.baseurl }}` in links to avoid hardcoded paths.
+- When adding new tags or categories, also add corresponding pages under `journal/tag/` and `journal/category/`.
+
+----------
+
+
+Contributing
+============
+
+See `AGENTS.md` for repository guidelines (structure, style, builds).
+Please open an issue first for large changes and include reproduction steps or screenshots. PRs should link issues and include local verification steps.
+
+----------
+
+
 ##License
 
 The MIT License (MIT)
@@ -164,4 +194,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
