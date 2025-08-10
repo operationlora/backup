@@ -27,7 +27,7 @@ layout: default
           <figure class="gallery-item">
             <figure class="effect-selena">
               <header class='gallery-icon'>
-                <a href="{{ site.url }}{{ site.baseurl }}{{ img }}" class="popup" title="{{ page.product_name | escape }}" data-caption="¥{{ page.product_price }}">
+                <a href="{{ site.url }}{{ site.baseurl }}{{ img }}" class="popup" title="{{ page.product_name | escape }}" data-caption="{{ site.currency_symbol | default: "$" }}{{ page.product_price }}">
                   <img src="{{ site.url }}{{ site.baseurl }}{{ img }}"
                        alt="{{ page.product_name | default: page.title | escape }} image {{ forloop.index }}"
                        loading="lazy" decoding="async">
@@ -36,7 +36,7 @@ layout: default
               <figcaption class='gallery-caption'>
               <div class="entry-summary">
                   <h3>{{ page.product_name | escape }}</h3>
-                  <p>¥{{ page.product_price }}</p>
+                  <p>{{ site.currency_symbol | default: "$" }}{{ page.product_price }}</p>
                 </div>
               </figcaption>
             </figure>
@@ -48,7 +48,7 @@ layout: default
         <figure class="gallery-item">
           <figure class="effect-selena">
             <header class='gallery-icon'>
-              <a href="{{ site.url }}{{ site.baseurl }}{{ page.image }}" class="popup" title="{{ page.product_name | escape }}" data-caption="¥{{ page.product_price }}">
+              <a href="{{ site.url }}{{ site.baseurl }}{{ page.image }}" class="popup" title="{{ page.product_name | escape }}" data-caption="{{ site.currency_symbol | default: "$" }}{{ page.product_price }}">
                 <img src="{{ site.url }}{{ site.baseurl }}{{ page.image }}"
                      alt="{{ page.product_name | default: page.title | escape }}"
                      loading="lazy" decoding="async">
@@ -57,7 +57,7 @@ layout: default
             <figcaption class='gallery-caption'>
               <div class="entry-summary">
                 <h3>{{ page.product_name | escape }}</h3>
-                <p>¥{{ page.product_price }}</p>
+                <p>{{ site.currency_symbol | default: "$" }}{{ page.product_price }}</p>
               </div>
             </figcaption>
           </figure>

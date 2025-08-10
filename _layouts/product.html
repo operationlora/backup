@@ -40,7 +40,7 @@ layout: default
     <aside class="product-info">
       <h1 class="product-title">{{ page.product_name | default: page.title }}</h1>
       {% if page.product_price %}
-      <p class="product-price">¥{{ page.product_price }}</p>
+      <p class="product-price">{{ site.currency_symbol | default: "$" }}{{ page.product_price }}</p>
       {% endif %}
 
       {% if page.stripe_link %}
@@ -61,7 +61,7 @@ layout: default
   <div class="product-sticky-inner container">
     <div class="sticky-price-title">
       <strong>{{ page.product_name | default: page.title }}</strong>
-      {% if page.product_price %}<span>— ¥{{ page.product_price }}</span>{% endif %}
+      {% if page.product_price %}<span>— {{ site.currency_symbol | default: "$" }}{{ page.product_price }}</span>{% endif %}
     </div>
     <a class="btn btn-primary product-buy" href="{{ page.stripe_link }}" target="_blank" rel="noopener">立即購買</a>
   </div>

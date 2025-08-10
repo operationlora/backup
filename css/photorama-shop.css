@@ -23,14 +23,17 @@
 }
 
 .photorama-shop-item h3 {
-  font-size: 1.2rem;
+  font-size: 1.6rem; /* stronger hierarchy for name */
   line-height: 1.35;
-  margin: 0.5em 0 0.25em 0;
+  margin: 0.6em 0 0.35em 0;
+  color: #fff; /* ensure contrast on dark bg */
+  transition: color .15s ease; /* smooth hover */
 }
 
 .photorama-shop-item p {
-  font-size: 1rem;
-  color: #555;
+  font-size: 1.4rem; /* more prominent price */
+  color: var(--accent, #FFD700);
+  font-weight: 700;
   margin: 0;
 }
 
@@ -44,6 +47,13 @@
   color: var(--accent, #FFD700);
 }
 
+/* Restore hover color on explicit heading color */
+.photorama-shop-item a:hover h3,
+.photorama-shop-item a:focus h3,
+.photorama-shop-item a:focus-visible h3 {
+  color: var(--accent, #FFD700);
+}
+
 /* Accessible focus indication within Shop only */
 .photorama-shop-item a:focus-visible {
   outline: 2px solid var(--accent, #FFD700);
@@ -52,17 +62,16 @@
 
 /* Responsive layout */
 @media (max-width: 992px) {
-  /* Slightly smaller headings on tablet */
-  .photorama-shop-item h3 {
-    font-size: 1.1rem;
-  }
+  /* Tablet */
+  .photorama-shop-item h3 { font-size: 1.45rem; }
+  .photorama-shop-item p { font-size: 1.25rem; }
 }
 
 @media (max-width: 600px) {
   /* Mobile: natural single column with grid */
   .photorama-shop-grid { gap: 20px; }
-  .photorama-shop-item h3 { font-size: 1.1rem; }
-  .photorama-shop-item p { font-size: 1rem; }
+  .photorama-shop-item h3 { font-size: 1.35rem; }
+  .photorama-shop-item p { font-size: 1.2rem; }
 }
 
 /* Ultra-wide desktop optimizations */

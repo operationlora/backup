@@ -78,12 +78,14 @@
 
 .product-title {
   margin: 0 0 .5rem 0;
-  font-size: 1.6rem;
+  font-size: clamp(1.8rem, 2.4vw + 1rem, 2.75rem); /* stronger emphasis */
 }
 
 .product-price {
   margin: 0 0 1rem 0;
   font-weight: 700;
+  font-size: clamp(1.4rem, 1.5vw + 1rem, 2rem);
+  color: var(--accent, #FFD700);
 }
 
 .product-actions {
@@ -121,4 +123,3 @@
   .product-sticky-bar { display: block; }
   .product-page { padding-bottom: 84px; }
 }
-

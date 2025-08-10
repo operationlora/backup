@@ -20,7 +20,7 @@ header-img: "img/gallery-bg.jpg"
                  {% if forloop.index0 < 3 %}fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %}>
             {% endif %}
             <h3>{{ item.product_name | escape }}</h3>
-            <p>¥{{ item.product_price }}</p>
+            <p>{{ site.currency_symbol | default: "$" }}{{ item.product_price }}</p>
           </a>
         </div>
       {% endfor %}
