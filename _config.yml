@@ -51,10 +51,9 @@ port:             	 4000
 # Build settings
 markdown: kramdown
 highlighter: rouge
-permalink: pretty
+permalink: "/journal/:year/:month/:day/:title/"
 paginate: 5
 paginate_path: "/journal/page:num/"
-permalink: "/journal/:title/"
 categories_path: "/journal/category/"
 tags_path: "/journal/tag/"
 plugins:
