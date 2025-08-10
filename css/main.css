@@ -79,9 +79,11 @@ hr.small {
   text-shadow: -.025em -.025em 0 rgba(0, 133, 161, 0.75), .025em -.025em 0 rgba(0, 133, 161, 0.75), -.025em .025em 0 rgba(0, 133, 161, 0.75), .025em .025em 0 rgba(0, 133, 161, 0.75);
 }
 .navbar-logo {
-  width: 150px;
+  height: 40px;
+  width: auto;
   cursor: pointer;
-  margin-top: 15px;
+  display: block;
+  margin: 5px 0;
 }
 @media only screen and (min-width: 768px) {
   .navbar-custom { background: transparent; border-bottom: 1px solid transparent; }

@@ -73,7 +73,6 @@ layout: default
   </div>
 </div>
 
-{% include scripts.html %}
 {% if page.images or page.image %}
 <script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
 <script type="text/javascript">
@@ -93,4 +92,10 @@ layout: default
     });
   });
 </script>
+{% endif %}
+
+{% if page.active == 'gallery' %}
+<!-- Gallery-specific scripts -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script>
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
 {% endif %}

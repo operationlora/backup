@@ -14,17 +14,18 @@ What to verify
 
 Notes on SRI
 - Added SRI for jQuery 3.7.1. Bootstrap 3.4.1 JS now uses jsDelivr CDN with official SRI in `_includes/scripts.html`.
-- Next: add SRI for jQuery Migrate 3.4.1 (matching the exact CDN asset) or self‑host under `js/`.
+- jQuery Migrate: disabled by default. If temporarily re‑enabled for debugging, add SRI (matching exact CDN asset) or self‑host under `js/`.
 - If you prefer CDN for Bootstrap CSS 3.4.1, update `_includes/head.html` to the CDN URL and add SRI; otherwise keep the local CSS.
 
 Optional next steps (low risk)
-- Self‑host Bootstrap 3.4.1 JS and jQuery Migrate to avoid relying on external CDNs during demos.
+- Self‑host jQuery 3.7.1 and Bootstrap 3.4.1 JS to avoid relying on external CDNs during demos.
 - Remove legacy plugins if unused (cycle, tinycarousel, mousewheel); keep only magnific/kenburns actually used.
 - Continue CSS variableization in css/main.css (e.g., #f2f2f2, #808080, #404040, #6ec54d) to reduce hardcoded colors.
 - Unify fonts across homepage by retiring Josefin in css/WYSIWYG.css if consistent typography is desired.
 
 Completed (2025‑08‑10)
 - Centralized core scripts via `_includes/scripts.html` across home/page/post.
+- Consolidated runtime: load core scripts from default/home layouts before page content; removed per‑page jQuery 2.1.1 includes in gallery pages.
 - Fixed categories cloud variable bug in `_layouts/post.html` (use `category` consistently).
 - Added SRI for Bootstrap 3.4.1 JS (jsDelivr) and kept jQuery 3.7.1 SRI.
 - Moved navbar inline styles to CSS classes in `css/main.css` (`.navbar-outer`, `.navbar-menu`, `.navbar-logo`).
@@ -35,6 +36,8 @@ Completed (2025‑08‑10)
 - Performance hints: added `preconnect` and `dns-prefetch` for `code.jquery.com` and `cdn.jsdelivr.net` in `_includes/head.html`.
 - Subgallery images: enabled `loading="lazy"` and `decoding="async"` in `_includes/subgallery.html`.
 - jQuery Migrate gating: made inclusion conditional via `site.jquery_migrate` flag in `_includes/scripts.html` and `_config.yml`.
+- jQuery Migrate removal: default set to false; replaced deprecated usages (`window.load` → `on('load')`, `.bind` → `.on`). Console clean across home/gallery/shop.
+- Home: removed unused `jquery.cycle.min.js` (kenburns mode is used).
 
 Route B (future): Bootstrap 4.6.2 (with SRI)
 Impact summary
@@ -124,7 +127,6 @@ Key technical debt / risks
 Low‑risk improvements (no visual change intended)
 - Prune unused assets: continue removing unreferenced files. Done: `js/zepto.min.js`, redundant `js/jquery.isotope.min.js`. Next: audit `tinycarousel`/`mousewheel` usage before removal.
 - Move inline styles into `css/main.css` with dedicated classes. Done: navbar, newsletter. Next: footer inline styles → CSS classes.
-- Keep one jQuery Migrate version consistently referenced (currently 3.4.1). Add SRI for jQuery Migrate 3.4.1 or self‑host.
 - Plugin audit: keep kenburns (home) and magnific (image popups); disable cycle/tinycarousel/mousewheel across pages if not needed (verify usage in `js/scripts.js`).
 
 Additional small optimizations (safe)

@@ -8,13 +8,18 @@
 
 
   <link rel="shortcut icon" href="{{ site.baseurl }}/favicon.ico?" type="image/x-icon">
-<link rel="icon" href="{{ site.baseurl }}/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="{{ site.baseurl }}/favicon.ico?" type="image/x-icon">
 
     <meta name="description" content="{{ site.description }}">
 
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+
+    <!-- Platform icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/logo-180x180.png">
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/logo.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}/logo.png">
 
     {%- comment -%}
       Open Graph + Twitter Cards (scoped, safe defaults)
