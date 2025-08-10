@@ -11,8 +11,8 @@
 
 	<header class='gallery-icon'>
 
-<a href="{{ site.url }}{{ site.baseurl }}{{ img.image_path }}" class="popup"  title="{{ img.image-caption }}" data-caption="{{ img.image-copyright }}">
-<img src="{{ site.url }}{{ site.baseurl }}{{ img.image_path }}"></a>
+<a href="{{ img.image_path | relative_url }}" class="popup"  title="{{ img.image-caption }}" data-caption="{{ img.image-copyright }}">
+<img src="{{ img.image_path | relative_url }}"></a>
 						
 	</header>	
 		

@@ -27,8 +27,8 @@ layout: default
           <figure class="gallery-item">
             <figure class="effect-selena">
               <header class='gallery-icon'>
-                <a href="{{ site.url }}{{ site.baseurl }}{{ img }}" class="popup" title="{{ page.product_name | escape }}" data-caption="{{ site.currency_symbol | default: "$" }}{{ page.product_price }}">
-                  <img src="{{ site.url }}{{ site.baseurl }}{{ img }}"
+                <a href="{{ img | relative_url }}" class="popup" title="{{ page.product_name | escape }}" data-caption="{{ site.currency_symbol | default: "$" }}{{ page.product_price }}">
+                  <img src="{{ img | relative_url }}"
                        alt="{{ page.product_name | default: page.title | escape }} image {{ forloop.index }}"
                        loading="lazy" decoding="async">
                 </a>
@@ -48,8 +48,8 @@ layout: default
         <figure class="gallery-item">
           <figure class="effect-selena">
             <header class='gallery-icon'>
-              <a href="{{ site.url }}{{ site.baseurl }}{{ page.image }}" class="popup" title="{{ page.product_name | escape }}" data-caption="{{ site.currency_symbol | default: "$" }}{{ page.product_price }}">
-                <img src="{{ site.url }}{{ site.baseurl }}{{ page.image }}"
+              <a href="{{ page.image | relative_url }}" class="popup" title="{{ page.product_name | escape }}" data-caption="{{ site.currency_symbol | default: "$" }}{{ page.product_price }}">
+                <img src="{{ page.image | relative_url }}"
                      alt="{{ page.product_name | default: page.title | escape }}"
                      loading="lazy" decoding="async">
               </a>

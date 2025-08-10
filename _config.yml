@@ -2,7 +2,8 @@
 title: PHOTORAMA
 email: ""
 description: "Photo Journal"
-url: "https://sunbliss.github.io"
+# Set to your GitHub Pages user URL (no trailing slash)
+url: "https://linchunchiao.github.io"
 baseurl: "/photorama"
 facebook_username: ""
 twitter_username: ""

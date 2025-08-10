@@ -36,8 +36,8 @@ images:
 				<figure class="gallery-item">
 					<header class='gallery-icon'>
 
-<a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
-<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"
+<a href="{{ image.gallery-folder | relative_url }}">
+<img src="{{ image.image_path | relative_url }}"
      alt="{{ page.title | default: site.title | escape }} image {{ forloop.index }}"
      {% if forloop.first %}fetchpriority="high"{% endif %}></a>
 	
