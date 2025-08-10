@@ -454,3 +454,8 @@ body {
   border: 0;
   padding: 0 12px;
 }
+
+/* Utilities extracted from inline styles */
+.section-heading-light-center { color: #fff; text-align: center; margin-top: 10px; }
+.meta-chip { font-size: .7em; background-color: rgba(128, 128, 128, 0.45); }
+.footer-icon-link { color: #dddddd; }

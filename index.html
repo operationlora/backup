@@ -37,9 +37,9 @@ images:
 					<header class='gallery-icon'>
 
 <a href="{{ image.gallery-folder | relative_url }}">
-<img src="{{ image.image_path | relative_url }}"
+  <img src="{{ image.image_path | relative_url }}"
      alt="{{ page.title | default: site.title | escape }} image {{ forloop.index }}"
-     {% if forloop.first %}fetchpriority="high"{% endif %}></a>
+     {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %}></a>
 	
 				</header>	
 				</figure>
@@ -59,46 +59,46 @@ images:
 
                  {% if site.facebook_username %}
 			<li>
-   <a href="https://facebook.com/{{ site.facebook_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Facebook">
+  <a href="https://facebook.com/{{ site.facebook_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Facebook">
                        <i class="fa fa-facebook"></i>
                      </span>
 </a></li>
     {% endif %}
  {% if site.twitter_username %}
 			<li>
-   <a href="https://twitter.com/{{ site.twitter_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Twitter">
+  <a href="https://twitter.com/{{ site.twitter_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Twitter">
                        <i class="fa fa-twitter"></i>
                      </span>
 </a></li>
     {% endif %}
                 {% if site.instagram_username %}
 			<li>
-   <a href="https://instagram.com/{{ site.instagram_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Instagram">
+  <a href="https://instagram.com/{{ site.instagram_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Instagram">
                        <i class="fa fa-instagram"></i>
                      </span>
 </a></li>
     {% endif %}
                     {% if site.flickr_username %}
 						<li>
-   <a href="https://flickr.com/photos/{{ site.flickr_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Flickr">
+  <a href="https://flickr.com/photos/{{ site.flickr_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Flickr">
               <i class="fa fa-flickr"></i>
                      </span>
  </a></li>	
      {% endif %}
                     {% if site.deviantart_username %}
 			<li>
-   <a href="https://{{ site.deviantart_username }}.deviantart.com" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="DeviantArt">
+  <a href="https://{{ site.deviantart_username }}.deviantart.com" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="DeviantArt">
 <i class="fa fa-deviantart"></i> </span>
 </a></li>	
     {% endif %}
                     {% if site.github_username %}
                 <li>
-   <a href="https://github.com/{{ site.github_username }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Github">
+  <a href="https://github.com/{{ site.github_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Github">
               <i class="fa fa-github"></i>
                      </span>
                    {% endif %}
 <li>
-    <a href="mailto:{{ site.email }}" style="color:#dddddd;" target="_blank" rel="noopener noreferrer" title="Email">
+    <a href="mailto:{{ site.email }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Email">
               <i class="fa fa-envelope-o"></i></span>
           </a> </li>
 	

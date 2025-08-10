@@ -29,7 +29,7 @@ layout: default
                     {% endif %}
                     <span class="meta">Posted on {{ page.date | date: "%B %-d, %Y" }}</span>
 
-<span class="time-tag-categ" style="font-size:.7em;background-color: rgba(128, 128, 128, 0.45);">
+<span class="time-tag-categ meta-chip">
 
 {% assign minutes = content | number_of_words | divided_by: 180 %}
 <i class="fa fa-clock-o"></i>&nbsp;{% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
@@ -96,7 +96,7 @@ layout: default
             <div class="tags-wrap">
    <div class="tags">
 
-  <div class="section-heading group" style="color: #fff; text-align: center; margin-top: 10px;">
+  <div class="section-heading group section-heading-light-center">
 
     <h3>Tags Cloud</h3>
 
@@ -137,7 +137,7 @@ layout: default
 
 <div class="categories">
 
-  <div class="section-heading group" style="color: #fff; text-align: center; margin-top: 10px;">
+  <div class="section-heading group section-heading-light-center">
 
     <h3>Categories Cloud</h3>
 
@@ -183,27 +183,29 @@ layout: default
        </div>
 
 
-<!-- include image popups -->
-<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
-
+<!-- Conditionally load Magnific Popup only when needed -->
 <script type="text/javascript">
-      $(document).ready(function($) {
-        $('a.popup').magnificPopup({
-         type: 'image',
-	  gallery:{
-         enabled:true,
-         navigateByImgClick: true,
-         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-       },
-image: {
-      titleSrc: function(item) {
-              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+  jQuery(function($) {
+    if ($('a.popup').length > 0) {
+      $.getScript('{{ site.baseurl }}/js/jquery.magnific-popup.js')
+        .done(function() {
+          $('a.popup').magnificPopup({
+            type: 'image',
+            gallery: {
+              enabled: true,
+              navigateByImgClick: true,
+              preload: [0, 1]
+            },
+            image: {
+              titleSrc: function(item) {
+                return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+              }
             }
-        }
-          // other options
-      });
-});
-    </script>
+          });
+        });
+    }
+  });
+  </script>
 
 <!-- Masonry for galleries -->
 <script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script>

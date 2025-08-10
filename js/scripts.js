@@ -129,6 +129,18 @@
 					itemSelector: '.gallery-item'
 				});
 				$(element).isotope('layout');
+
+				// Recalculate layout as images load (supports lazy-loaded images)
+				$(element).find('img').each(function() {
+					var img = this;
+					if (img.complete) {
+						$(element).isotope('layout');
+					} else {
+						$(img).on('load', function() {
+							$(element).isotope('layout');
+						});
+					}
+				});
 					
 				// filtering
 				jQuery('#gallery-filter li a').on('click', function(){

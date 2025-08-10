@@ -67,7 +67,7 @@ images:
 					<header class='gallery-icon'>
 		       
 <a href="{{ image.gallery-folder | relative_url }}">
-<img src="{{ image.image_path | relative_url }}" alt="{{ image.gallery-name | default: 'album' }} cover"></a>
+<img src="{{ image.image_path | relative_url }}" alt="{{ image.gallery-name | default: 'album' }} cover" loading="lazy" decoding="async"></a>
 
 					</header>	
 					<figcaption class='gallery-caption'>

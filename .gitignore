@@ -1,2 +1,8 @@
-_site
-node_modules
+_site/
+node_modules/
+.jekyll-cache/
+.sass-cache/
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-error.log
