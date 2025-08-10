@@ -31,6 +31,7 @@ Completed (2025‑08‑10)
 - Consolidated runtime: load core scripts from default/home layouts before page content; removed per‑page jQuery 2.1.1 includes in gallery pages.
 - Fixed categories cloud variable bug in `_layouts/post.html` (use `category` consistently).
 - Added SRI for Bootstrap 3.4.1 JS (jsDelivr) and kept jQuery 3.7.1 SRI.
+  - Later: switched to self‑hosted core JS to remove CDN dependency.
 - Moved navbar inline styles to CSS classes in `css/main.css` (`.navbar-outer`, `.navbar-menu`, `.navbar-logo`).
 - Pruned unused assets: removed `js/zepto.min.js` and redundant `js/jquery.isotope.min.js`.
 
@@ -43,6 +44,8 @@ Completed (2025‑08‑10)
 - Home: removed unused `jquery.cycle.min.js` (kenburns mode is used).
 
 - Plugin includes pruned (home/post): dropped Modernizr, Retina, Mousewheel, TinyCarousel, Lazy Line Painter. Kept Kenburns/Isotope/Magnific where required.
+  - Core runtime now loaded from local files: `js/vendor/jquery-3.7.1.min.js`, optional `jquery-migrate-3.4.1.min.js`, and `bootstrap-3.4.1.min.js`.
+  - Removed unused plugin files from repo: `js/modernizr.js`, `js/retina.min.js`, `js/jquery.mousewheel.min.js`, `js/jquery.cycle.min.js`, `js/jquery.tinycarousel.min.js`, `js/jquery.lazylinepainter.min.js`.
 
 Route B (future): Bootstrap 4.6.2 (with SRI)
 Impact summary
