@@ -30,6 +30,12 @@ Completed (2025‑08‑10)
 - Moved navbar inline styles to CSS classes in `css/main.css` (`.navbar-outer`, `.navbar-menu`, `.navbar-logo`).
 - Pruned unused assets: removed `js/zepto.min.js` and redundant `js/jquery.isotope.min.js`.
 
+- Newsletter: corrected TinyLetter popup target to `photorgasms` and replaced inline styles with CSS classes (`.newsletter-section`, `.newsletter-form`, `.newsletter-input`, `.newsletter-submit`).
+- Footer external links hardened: add `rel="noopener noreferrer"` with `target="_blank"`; removed `target` from `mailto:`.
+- Performance hints: added `preconnect` and `dns-prefetch` for `code.jquery.com` and `cdn.jsdelivr.net` in `_includes/head.html`.
+- Subgallery images: enabled `loading="lazy"` and `decoding="async"` in `_includes/subgallery.html`.
+- jQuery Migrate gating: made inclusion conditional via `site.jquery_migrate` flag in `_includes/scripts.html` and `_config.yml`.
+
 Route B (future): Bootstrap 4.6.2 (with SRI)
 Impact summary
 - Navbar markup:
@@ -117,15 +123,13 @@ Key technical debt / risks
 
 Low‑risk improvements (no visual change intended)
 - Prune unused assets: continue removing unreferenced files. Done: `js/zepto.min.js`, redundant `js/jquery.isotope.min.js`. Next: audit `tinycarousel`/`mousewheel` usage before removal.
-- Move inline styles into `css/main.css` with dedicated classes. Done: navbar. Next: newsletter/footer inline styles → CSS classes.
+- Move inline styles into `css/main.css` with dedicated classes. Done: navbar, newsletter. Next: footer inline styles → CSS classes.
 - Keep one jQuery Migrate version consistently referenced (currently 3.4.1). Add SRI for jQuery Migrate 3.4.1 or self‑host.
 - Plugin audit: keep kenburns (home) and magnific (image popups); disable cycle/tinycarousel/mousewheel across pages if not needed (verify usage in `js/scripts.js`).
 
 Additional small optimizations (safe)
 - Conditional plugin loading on posts: only include Magnific on post pages when images/`a.popup` exist or via a front‑matter flag (e.g., `use_magnific: true`).
-- Image hygiene: add `loading="lazy"`/`decoding="async"` to non‑critical images (already applied to product pages); consider laziness for non‑first hero images on home.
-- Footer links hardening: add `rel="noopener noreferrer"` when using `target="_blank"` in `_includes/footer.html`.
-- Perf hints: add `preconnect` to `code.jquery.com` and `cdn.jsdelivr.net` in `head.html` to reduce first‑paint latency for CDN assets.
+- Image hygiene: add `loading="lazy"`/`decoding="async"` to non‑critical images (already applied to product pages; subgallery updated). Consider laziness for non‑first hero images on home.
 
 Future upgrade guidance
 - Use parallel BS4/BS5 partials/layouts on a test page to achieve CSS parity before switching globally. Keep jQuery Migrate during transition; remove after console is clean. Document results with screenshots in `screenshots/`.

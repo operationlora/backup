@@ -419,3 +419,36 @@ body {
 
 
 /* cleaned: duplicates removed */
+
+/* Newsletter */
+.newsletter-section {
+  background-color: #530720;
+  padding-bottom: 40px;
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+.newsletter-form {
+  padding: 3px;
+  text-align: center;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+.newsletter-input {
+  width: 200px;
+  height: 30px;
+  border: 0;
+  background-color: #5A0F28;
+  color: #dddddd;
+  outline: 0;
+  padding-left: 12px;
+}
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, .45);
+}
+.newsletter-submit {
+  background-color: #470118;
+  color: #dddddd;
+  height: 30px;
+  border: 0;
+  padding: 0 12px;
+}

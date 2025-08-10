@@ -12,7 +12,7 @@
 	<header class='gallery-icon'>
 
 <a href="{{ img.image_path | relative_url }}" class="popup"  title="{{ img.image-caption }}" data-caption="{{ img.image-copyright }}">
-<img src="{{ img.image_path | relative_url }}"></a>
+<img src="{{ img.image_path | relative_url }}" loading="lazy" decoding="async" alt="{{ img.image-caption | default: 'image' }}"></a>
 						
 	</header>	
 		

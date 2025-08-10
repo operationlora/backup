@@ -65,6 +65,10 @@ plugins:
   - jekyll-paginate
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
+# Runtime toggles
+# Set to false to attempt running without jQuery Migrate (recommended once pages are clean)
+jquery_migrate: true
+
 # Add shop collection for hot-pluggable Shop tab
 collections:
   shop:
