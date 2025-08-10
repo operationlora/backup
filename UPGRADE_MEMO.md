@@ -132,48 +132,66 @@ Future upgrade guidance
 
 ---
 
-GitHub Pages path fixes (2025‑08‑10)
+Post Front Matter Normalization Plan (Proposal)
 
-Context / symptoms
-- After deploying to GitHub Pages, pages rendered unstyled and many assets 404’d (CSS/JS/images like `/css/main.css`, `/js/main.min.js`, `/img/...`).
-- Clicking nav items on Pages showed URLs auto‑inserting the original upstream repo name (a mismatch between configured base path and actual site mode).
-- Locally this was hard to reproduce because `jekyll serve --baseurl ''` hides path issues; GitHub Pages surfaced them.
+Goals
+- Unify post/page front matter for reliable SEO/OG and templates.
+- Remove ambiguity in `image`/`header-img`/`images` usage and tags/categories types.
 
-Diagnosis (root causes)
-- Site mode mismatch: The site is published as a GitHub User/Org root site at `https://operationlora.github.io/`, but `_config.yml` had `baseurl: "/photorama"` (intended for project sites under `/<repo>/`). This caused all links to point under `/<repo>/…` on a root site, yielding 404s and “inserting the upstream repo name”.
-- Incorrect domain: `_config.yml` `url` pointed to the theme author’s domain (`sunbliss.github.io`). That leaked into canonical/OG meta and absolute URLs.
-- A few template/JS references bypassed Jekyll helpers and used absolute paths (e.g., `/feed.xml` in `js/super-search.js`).
-- Minor template issues: `_layouts/home.html` wrapped an extra `<head>` and referenced `{{ root_url }}` for favicons (undefined), increasing confusion when debugging.
+Scope
+- All Markdown/posts under `_posts/` and any pages using post-like layouts that surface OG images.
 
-Remediation applied
-- Configuration
-  - `_config.yml`: set `url: "https://operationlora.github.io"` and `baseurl: ""` to match a root site. This ensures `| relative_url` and `absolute_url` generate correct links.
-- Path fixes (swap absolute/site.url builds for base‑aware helpers)
-  - `index.html`, `gallery/index.html`, `gallery/gallery0X/index.html`, `_includes/subgallery.html`, `_layouts/page.html`:
-    - Replace `{{ site.url }}{{ site.baseurl }}…` with `{{ … | relative_url }}` for images/links so output follows the configured base path without hardcoding the domain.
-  - `js/super-search.js`: `/feed.xml` → `./feed.xml` (and the include still passes `{{ site.baseurl }}/feed.xml`), making the search index path safe under subpaths.
-  - `feed.xml`: use `| relative_url` for `<link>`, `<atom:link>`, and `<guid>`; set `guid isPermaLink="false"` since it’s now relative.
-  - `_layouts/home.html`: remove duplicate `<head>` wrapper and invalid `{{ root_url }}` favicon references; use the centralized `_includes/head.html`.
-- Explicitly not added: `.nojekyll` (this site is Jekyll‑rendered on Pages; `.nojekyll` would disable Liquid processing).
+Audit (discovery report)
+- Scan front matter to find irregular cases:
+  - `image` present as an object (e.g., `{ feature: ..., path: ..., src: ... }`).
+  - Only `header-img` present; missing `image`.
+  - `images` array present; first item is a string vs. object with `image_path`.
+  - `tags`/`categories` typed as string vs. array.
+- Output a CSV/markdown report (path, detected pattern, proposed fix).
 
-Verification
-- Local: `jekyll doctor` is clean; `jekyll build` shows output with root‑relative paths suitable for a root site (e.g., `/css/main.css`, `/gallery/…`, `/img/…`).
-- Sanity checks on `_site/` confirm canonical/OG now point to `https://operationlora.github.io/…` and nav/image references resolve without the upstream domain or repo name injected.
-- Grep audit (source, excluding `_site`) finds no leading‑slash local refs in HTML/CSS/JS that would bypass Jekyll’s base handling.
+Normalization rules (target schema)
+- `image`: string, root-relative path (e.g., `/img/...`).
+- If `image` is an object: map first matching key in `[feature, path, src, url]` → `image` string.
+- If no `image` but `header-img` exists: set `image = header-img` (keep `header-img` for compatibility or drop after migration).
+- If neither exists but `images` array exists:
+  - If first item is a string: set `image = item`.
+  - If first item is an object: set `image = item.image_path` if present.
+- `tags`: ensure array (wrap single string into array).
+- `categories`: ensure array (wrap single string into array).
 
-Remaining issues / follow‑ups
-- OG image on some journal posts renders an object literal (e.g., `%7B%22feature%22%20=%3E%20%22pc010.webp%22%7D`) in the built meta. This suggests front matter provides `image` as a nested object (e.g., `image: { feature: ... }`) while `head.html` expects a string path (`page.image`).
-  - Option A (preferred): normalize posts’ front matter to `image: /img/…` (string), or `header-img: /img/…`.
-  - Option B: extend `_includes/head.html` to detect `image.feature` keys and pick the nested value when `page.image` is a map.
-- If you switch to a project site in the future (e.g., `https://<user>.github.io/<repo>/`), set `baseurl: "/<repo>"` and keep all `| relative_url` calls as is.
-- If you later publish prebuilt static files (only `_site/` contents), then add `.nojekyll` and stop committing Liquid/Front matter files to that branch.
+Migration tooling
+- Provide a script with:
+  - `--audit` (read-only): prints report, no writes.
+  - `--dry-run`: shows proposed diffs; no file changes.
+  - `--write` + `--backup`: writes changes and creates `*.bak` of originals.
+- Implementation options:
+  - Ruby (fits Jekyll stack; use `front_matter_parser` or manual split + `YAML.load` / `YAML.dump`).
+  - Node.js (use `gray-matter` + `js-yaml`), preserves body verbatim.
 
-How to reproduce Pages behavior locally
-- Root site emulation: `jekyll serve --watch --baseurl ''` and open `http://localhost:4000/`.
-- Project site emulation: `jekyll serve --watch --baseurl '/<repo>'` and open `http://localhost:4000/<repo>/`.
+Template hardening (optional, quick safety net)
+- In `_includes/head.html`, when computing the primary image:
+  - If `page.image` is a map, check keys `[feature, path, src, url]`.
+  - Else, if `page.images` exists, derive first image (string or `image_path`).
+- Keep this only as fallback until content is normalized.
 
-Post‑deploy checklist (root site)
-- Open nav items (Gallery, Journal, About, Shop): URLs should be `/gallery/`, `/journal/`, `/about/`, `/shop/` and load with CSS applied.
-- Inspect Network tab: local assets load from `/css/...`, `/js/...`, `/img/...` with status 200.
-- Search overlay: typing returns results; result links navigate within the same domain `operationlora.github.io`.
-- View source: canonical/OG tags reference `https://operationlora.github.io/…`.
+Rollout plan
+1) Run `--audit`, share report for sign-off.
+2) Pilot: run `--write --backup` on 3–5 posts; review git diff.
+3) Full run across `_posts/` with backups.
+4) Build locally (`jekyll build`) and spot-check OG/canonical and hero images.
+5) Optional: add a pre-commit check to flag non-normalized patterns.
+
+Validation & success criteria
+- `jekyll build` completes without errors.
+- Random sample: OG image meta points to a 200 asset; no URL-encoded object literals.
+- Grep shows no posts with `image:` as an object map.
+- Tags/categories are arrays in all posts.
+
+Risks & rollback
+- YAML serialization may alter quoting/flow style; mitigate with `--dry-run` and backups.
+- Heuristics could overwrite intentional custom structures; scope changes to matched patterns only and manual review outliers.
+
+Estimate
+- Audit/report: ~0.5h
+- Script implementation: ~1–2h
+- Pilot + full run + verification: ~1h
