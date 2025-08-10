@@ -89,3 +89,32 @@ Safer BS4 upgrade plan (do in a branch)
 Notes
 - Keep Route A as stable baseline until BS4 parity is visually confirmed via screenshots.
 - SRI/CDN: use jsDelivr for Bootstrap 4.6.2 (provided integrity), jQuery official CDN with SRI. Self‑host later if desired.
+
+---
+
+Current state and maintainability (2025‑08‑10)
+
+Summary
+- Overall acceptable but aging. Structure is modular (Jekyll layouts/includes), config is sane, and OG/canonical are set. Maintainability is medium: workable day‑to‑day, but upgrades are risky due to BS3‑specific CSS and multiple legacy plugins.
+
+Strengths
+- Modular templates: `_layouts` + `_includes` used correctly; `head.html` centralizes SEO/OG.
+- Config hygiene: `site.url`/`baseurl` used for links; nav driven by `site.nav`.
+- Content organization: galleries/posts logic clear; this memo documents upgrade paths and risks.
+
+Key technical debt / risks
+- Scattered asset loading: jQuery/Bootstrap/plugins are included separately in `index.html`, `_layouts/page.html`, `_layouts/post.html` → easy to drift/duplicate.
+- Legacy plugins: magnific, isotope, cycle, tinycarousel, mousewheel, kenburns, lazylinepainter, retina. Several rely on older jQuery APIs and increase fragility during framework changes.
+- Inline styles: present in `nav.html`, newsletter, footer, etc., making styling harder to unify/control.
+- BS3‑tied custom CSS: selectors such as `.navbar-custom .nav li a`, `.pager` tightly couple to BS3 DOM; upgrading without refactoring causes layout breakage.
+- Minor template quirk: categories cloud in `_layouts/post.html` references `tag` while iterating categories (likely typo/logic issue).
+
+Low‑risk improvements (no visual change intended)
+- Centralize scripts: create `_includes/scripts.html` to standardize jQuery/Bootstrap/common plugins; toggle extras via page flags (e.g., `use_magnific: true`).
+- Prune unused assets: remove unreferenced files (e.g., `js/zepto.min.js` if unused) to reduce confusion.
+- Move inline styles into `css/main.css` with dedicated classes for navbar/newsletter/footer.
+- Fix categories loop variable naming in `_layouts/post.html` and keep one jQuery Migrate version consistently referenced.
+- Plugin audit: keep kenburns (home) and magnific (image popups); disable cycle/tinycarousel/mousewheel across pages if not needed.
+
+Future upgrade guidance
+- Use parallel BS4/BS5 partials/layouts on a test page to achieve CSS parity before switching globally. Keep jQuery Migrate during transition; remove after console is clean. Document results with screenshots in `screenshots/`.
