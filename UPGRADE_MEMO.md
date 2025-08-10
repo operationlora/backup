@@ -13,14 +13,22 @@ What to verify
 - Gallery popups (magnific) and product pages render/zoom as expected.
 
 Notes on SRI
-- Added SRI for jQuery 3.7.1. For jQuery Migrate and Bootstrap 3.4.1 JS, add SRI after confirming exact CDN URL and published hashes, or self‑host the files under js/.
-- If you prefer CDN for Bootstrap CSS 3.4.1, update _includes/head.html to the CDN URL and add SRI; otherwise keep the local CSS.
+- Added SRI for jQuery 3.7.1. Bootstrap 3.4.1 JS now uses jsDelivr CDN with official SRI in `_includes/scripts.html`.
+- Next: add SRI for jQuery Migrate 3.4.1 (matching the exact CDN asset) or self‑host under `js/`.
+- If you prefer CDN for Bootstrap CSS 3.4.1, update `_includes/head.html` to the CDN URL and add SRI; otherwise keep the local CSS.
 
 Optional next steps (low risk)
 - Self‑host Bootstrap 3.4.1 JS and jQuery Migrate to avoid relying on external CDNs during demos.
 - Remove legacy plugins if unused (cycle, tinycarousel, mousewheel); keep only magnific/kenburns actually used.
 - Continue CSS variableization in css/main.css (e.g., #f2f2f2, #808080, #404040, #6ec54d) to reduce hardcoded colors.
 - Unify fonts across homepage by retiring Josefin in css/WYSIWYG.css if consistent typography is desired.
+
+Completed (2025‑08‑10)
+- Centralized core scripts via `_includes/scripts.html` across home/page/post.
+- Fixed categories cloud variable bug in `_layouts/post.html` (use `category` consistently).
+- Added SRI for Bootstrap 3.4.1 JS (jsDelivr) and kept jQuery 3.7.1 SRI.
+- Moved navbar inline styles to CSS classes in `css/main.css` (`.navbar-outer`, `.navbar-menu`, `.navbar-logo`).
+- Pruned unused assets: removed `js/zepto.min.js` and redundant `js/jquery.isotope.min.js`.
 
 Route B (future): Bootstrap 4.6.2 (with SRI)
 Impact summary
@@ -103,18 +111,21 @@ Strengths
 - Content organization: galleries/posts logic clear; this memo documents upgrade paths and risks.
 
 Key technical debt / risks
-- Scattered asset loading: jQuery/Bootstrap/plugins are included separately in `index.html`, `_layouts/page.html`, `_layouts/post.html` → easy to drift/duplicate.
 - Legacy plugins: magnific, isotope, cycle, tinycarousel, mousewheel, kenburns, lazylinepainter, retina. Several rely on older jQuery APIs and increase fragility during framework changes.
-- Inline styles: present in `nav.html`, newsletter, footer, etc., making styling harder to unify/control.
+- Inline styles: present in newsletter/footer, etc., making styling harder to unify/control.
 - BS3‑tied custom CSS: selectors such as `.navbar-custom .nav li a`, `.pager` tightly couple to BS3 DOM; upgrading without refactoring causes layout breakage.
-- Minor template quirk: categories cloud in `_layouts/post.html` references `tag` while iterating categories (likely typo/logic issue).
 
 Low‑risk improvements (no visual change intended)
-- Centralize scripts: create `_includes/scripts.html` to standardize jQuery/Bootstrap/common plugins; toggle extras via page flags (e.g., `use_magnific: true`).
-- Prune unused assets: remove unreferenced files (e.g., `js/zepto.min.js` if unused) to reduce confusion.
-- Move inline styles into `css/main.css` with dedicated classes for navbar/newsletter/footer.
-- Fix categories loop variable naming in `_layouts/post.html` and keep one jQuery Migrate version consistently referenced.
-- Plugin audit: keep kenburns (home) and magnific (image popups); disable cycle/tinycarousel/mousewheel across pages if not needed.
+- Prune unused assets: continue removing unreferenced files. Done: `js/zepto.min.js`, redundant `js/jquery.isotope.min.js`. Next: audit `tinycarousel`/`mousewheel` usage before removal.
+- Move inline styles into `css/main.css` with dedicated classes. Done: navbar. Next: newsletter/footer inline styles → CSS classes.
+- Keep one jQuery Migrate version consistently referenced (currently 3.4.1). Add SRI for jQuery Migrate 3.4.1 or self‑host.
+- Plugin audit: keep kenburns (home) and magnific (image popups); disable cycle/tinycarousel/mousewheel across pages if not needed (verify usage in `js/scripts.js`).
+
+Additional small optimizations (safe)
+- Conditional plugin loading on posts: only include Magnific on post pages when images/`a.popup` exist or via a front‑matter flag (e.g., `use_magnific: true`).
+- Image hygiene: add `loading="lazy"`/`decoding="async"` to non‑critical images (already applied to product pages); consider laziness for non‑first hero images on home.
+- Footer links hardening: add `rel="noopener noreferrer"` when using `target="_blank"` in `_includes/footer.html`.
+- Perf hints: add `preconnect` to `code.jquery.com` and `cdn.jsdelivr.net` in `head.html` to reduce first‑paint latency for CDN assets.
 
 Future upgrade guidance
 - Use parallel BS4/BS5 partials/layouts on a test page to achieve CSS parity before switching globally. Keep jQuery Migrate during transition; remove after console is clean. Document results with screenshots in `screenshots/`.
