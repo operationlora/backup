@@ -17,11 +17,14 @@ Notes on SRI
 - jQuery Migrate: disabled by default. If temporarily re‑enabled for debugging, add SRI (matching exact CDN asset) or self‑host under `js/`.
 - If you prefer CDN for Bootstrap CSS 3.4.1, update `_includes/head.html` to the CDN URL and add SRI; otherwise keep the local CSS.
 
-Optional next steps (low risk)
-- Self‑host jQuery 3.7.1 and Bootstrap 3.4.1 JS to avoid relying on external CDNs during demos.
-- Remove legacy plugins if unused (cycle, tinycarousel, mousewheel); keep only magnific/kenburns actually used.
-- Continue CSS variableization in css/main.css (e.g., #f2f2f2, #808080, #404040, #6ec54d) to reduce hardcoded colors.
-- Unify fonts across homepage by retiring Josefin in css/WYSIWYG.css if consistent typography is desired.
+Low‑risk improvements (consolidated)
+- Self‑host core JS (jQuery 3.7.1, Bootstrap 3.4.1) to avoid CDN dependency during demos.
+- Prune legacy plugins and unused assets: keep magnific/kenburns; audit/remove cycle, tinycarousel, mousewheel if unused. Done: removed `js/zepto.min.js` and redundant `js/jquery.isotope.min.js`.
+- Move remaining inline styles into CSS: create classes in `css/main.css`. Done: navbar, newsletter. Next: tag/category section headings and any residual per‑page styles.
+- Continue CSS variableization in `css/main.css` (e.g., #f2f2f2, #808080, #404040, #6ec54d) to reduce hardcoded colors.
+- Unify fonts across homepage by retiring Josefin in `css/WYSIWYG.css` if consistent typography is desired.
+- Conditional plugin loading on posts: include Magnific only when images/`a.popup` exist or via a `use_magnific: true` front matter flag.
+- Image hygiene: ensure `loading="lazy"`/`decoding="async"` on non‑critical images; consider laziness for non‑first hero images on home.
 
 Completed (2025‑08‑10)
 - Centralized core scripts via `_includes/scripts.html` across home/page/post.
@@ -38,6 +41,8 @@ Completed (2025‑08‑10)
 - jQuery Migrate gating: made inclusion conditional via `site.jquery_migrate` flag in `_includes/scripts.html` and `_config.yml`.
 - jQuery Migrate removal: default set to false; replaced deprecated usages (`window.load` → `on('load')`, `.bind` → `.on`). Console clean across home/gallery/shop.
 - Home: removed unused `jquery.cycle.min.js` (kenburns mode is used).
+
+- Plugin includes pruned (home/post): dropped Modernizr, Retina, Mousewheel, TinyCarousel, Lazy Line Painter. Kept Kenburns/Isotope/Magnific where required.
 
 Route B (future): Bootstrap 4.6.2 (with SRI)
 Impact summary
@@ -124,14 +129,7 @@ Key technical debt / risks
 - Inline styles: present in newsletter/footer, etc., making styling harder to unify/control.
 - BS3‑tied custom CSS: selectors such as `.navbar-custom .nav li a`, `.pager` tightly couple to BS3 DOM; upgrading without refactoring causes layout breakage.
 
-Low‑risk improvements (no visual change intended)
-- Prune unused assets: continue removing unreferenced files. Done: `js/zepto.min.js`, redundant `js/jquery.isotope.min.js`. Next: audit `tinycarousel`/`mousewheel` usage before removal.
-- Move inline styles into `css/main.css` with dedicated classes. Done: navbar, newsletter. Next: footer inline styles → CSS classes.
-- Plugin audit: keep kenburns (home) and magnific (image popups); disable cycle/tinycarousel/mousewheel across pages if not needed (verify usage in `js/scripts.js`).
-
-Additional small optimizations (safe)
-- Conditional plugin loading on posts: only include Magnific on post pages when images/`a.popup` exist or via a front‑matter flag (e.g., `use_magnific: true`).
-- Image hygiene: add `loading="lazy"`/`decoding="async"` to non‑critical images (already applied to product pages; subgallery updated). Consider laziness for non‑first hero images on home.
+<!-- Consolidated into earlier "Low‑risk improvements (consolidated)" section to remove duplication. -->
 
 Future upgrade guidance
 - Use parallel BS4/BS5 partials/layouts on a test page to achieve CSS parity before switching globally. Keep jQuery Migrate during transition; remove after console is clean. Document results with screenshots in `screenshots/`.
