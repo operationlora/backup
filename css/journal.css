@@ -17,8 +17,9 @@
   list-style: none;
   padding: 0;
   margin-top: 0rem;
-  margin-left: -25px;
-  margin-right: 20px;
+  /* simplify: remove legacy negative margins that caused overflow */
+  margin-left: 0;
+  margin-right: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -31,91 +32,67 @@
   -ms-flex-align: stretch;
   align-items: stretch;
   clear: both;
+  /* spacing between cards */
+  gap: 24px;
+  /* center rows so incomplete rows look balanced */
+  justify-content: center;
 }
 
 .blockGroup-list li
 {
-    padding: 0 10px;
+    /* reset padding; rely on gap */
+    padding: 0;
 }
 
 .blockGroup-list .block {
-  display: block;
-  width: 100%;
-  margin-bottom: 1.5rem;
-  font-family: "Roboto", sans-serif;
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: -webkit-box;
   display: flex;
+  /* Mobile-first: 1 column */
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 100%;
+      -ms-flex: 0 1 100%;
+          flex: 0 1 100%;
+  margin-bottom: 0;
+  font-family: "Roboto", sans-serif;
 }
 
-@media (max-width: 767px)
-{
-    .blockGroup-list .block
-    {
-        width: 100%;
-    }
+/* Tablet: 2 columns */
+@media (min-width: 768px) {
+  .blockGroup-list .block {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 calc((100% - 24px) / 2);
+        -ms-flex: 0 1 calc((100% - 24px) / 2);
+            flex: 0 1 calc((100% - 24px) / 2);
+  }
 }
 
-.blockGroup-list li:nth-child(1).block
-{
-    width: 100%;
+/* Desktop: 3 columns */
+@media (min-width: 1200px) {
+  .blockGroup-list .block {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 calc((100% - (2 * 24px)) / 3);
+        -ms-flex: 0 1 calc((100% - (2 * 24px)) / 3);
+            flex: 0 1 calc((100% - (2 * 24px)) / 3);
+  }
 }
 
-.blockGroup-list li:nth-child(1).block .postArticle-image
-{
-    padding-top: 30%;
-    position: center;
-}
+/* remove nth-child width overrides to keep a consistent grid */
 
-@media (max-width: 767px)
-{
-    .blockGroup-list li:nth-child(1).block .postArticle-image
-    {
-        padding-top: 50%;
-    }
-}
+/* legacy isotope-specific sizing removed */
 
-.blockGroup-list li:nth-child(1).block .postArticle-title
-{
-    color: #fff;
-    font-size: 1rem;
-}
+/* legacy isotope-specific sizing removed */
 
-.blockGroup-list li:nth-child(2).block,
-.blockGroup-list li:nth-child(3).block
-{
-    width: 100%;
-}
+/* keep titles consistent via main.css; no special-casing first item */
 
-.blockGroup-list li:nth-child(2).block .postArticle-image
-{
-    padding-top: 25%;
-    background-size: 50%;
-    background-position: left;
-}
+/* remove nth-child width overrides */
 
-.blockGroup-list li:nth-child(3).block .postArticle-image
-{
-    padding-top: 25%;
-    background-size: 50%;
-    background-position: right;
-}
+/* remove legacy background-based image sizing */
 
-.blockGroup-list li:nth-child(2).block .postArticle-title,
-.blockGroup-list li:nth-child(3).block .postArticle-title
-{
-    font-size: 1rem;
-}
+/* use uniform title sizing */
 
-@media (max-width: 767px)
-{
-    .blockGroup-list li:nth-child(2).block,
-  .blockGroup-list li:nth-child(3).block
-    {
-        width: 100%;
-    }
-}
+/* grid collapses via flex-basis override above */
 
 .blockGroup-list li .postArticle-title
 {
@@ -168,42 +145,13 @@
     text-align: right;
 }
 
+/* switch to real <img> sizing instead of background tricks */
 .blockGroup-list .postArticle-image {
-  background-size: 100%;
-    background-repeat: no-repeat;
-  background-position: center;
-  padding-top: 100%;
-  -webkit-transition-property: all, left, top, width;
-  -webkit-transition-duration: .5s, .1s, .1s, .1s;
-  -webkit-transition-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
-  -webkit-transition-delay: 0;
-  -moz-transition-property: all, left, top, width;
-  -moz-transition-duration: .5s, .1s, .1s, .1s;
-  -moz-transition-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
-  -moz-transition-delay: 0;
-  -ms-transition-property: all, left, top, width;
-  -ms-transition-duration: .5s, .1s, .1s, .1s;
-  -ms-transition-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
-  -ms-transition-delay: 0;
-  -o-transition-property: all, left, top, width;
-  -o-transition-duration: .5s, .1s, .1s, .1s;
-  -o-transition-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
-  -o-transition-delay: 0;
-  -webkit-transition-property: all, left, top, width;
-          transition-property: all, left, top, width;
-  -webkit-transition-duration: .5s, .1s, .1s, .1s;
-          transition-duration: .5s, .1s, .1s, .1s;
-  -webkit-transition-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
-          transition-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
+  background: none;
+  padding-top: 0;
 }
 
-@media (max-width: 767px)
-{
-    .blockGroup-list .postArticle-image
-    {
-        padding-top: 50%;
-    }
-}
+/* no special mobile override needed */
 
 .blockGroup-list li:nth-child(2).block .block-postMeta
 {
@@ -232,4 +180,13 @@
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
+}
+
+/* Journal-specific safety: ensure images don't overflow */
+body.journal .post-preview a { display: block; }
+body.journal .post-preview img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
 }

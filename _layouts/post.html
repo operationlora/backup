@@ -207,10 +207,14 @@ layout: default
   });
   </script>
 
-<!-- Masonry for galleries -->
-<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script>
-<!-- Custom gallery behaviors -->
-<script src="{{ site.baseurl }}/js/scripts.js"></script>
+{% comment %}
+  Load Isotope + gallery scripts only when needed.
+  Heuristics: content contains a rendered masonry gallery wrapper.
+{% endcomment %}
+{% if content contains 'masonry-gallery' %}
+  <script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script>
+  <script src="{{ site.baseurl }}/js/scripts.js"></script>
+{% endif %}
 
 </body>
 </html>

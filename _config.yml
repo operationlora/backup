@@ -57,7 +57,7 @@ port:             	 4000
 markdown: kramdown
 highlighter: rouge
 permalink: "/journal/:year/:month/:day/:title/"
-paginate: 5
+paginate: 6
 paginate_path: "/journal/page:num/"
 categories_path: "/journal/category/"
 tags_path: "/journal/tag/"

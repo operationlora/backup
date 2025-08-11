@@ -4,12 +4,13 @@
 	var $fullscreen_gallery = jQuery('.fullscreen-gallery.gallery');
 	if ( $fullscreen_gallery.length > 0 ) {
 
-		if ( $fullscreen_gallery.find('.gallery-item').length > 1 ) { // if there are more than 1 image
+        if ( $fullscreen_gallery.find('.gallery-item').length > 1 ) { // if there are more than 1 image
 			
 			if ( !$fullscreen_gallery.hasClass('kenburns-gallery') ) {	// do not initialize if kenburns
 				jQuery('#footer').prepend('<nav id="gallerynav"><a href="#" class="thumbs">	<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">	<rect width="5" height="5" x="0"   y="0" /><rect width="5" height="5" x="8" y="0" /><rect width="5" height="5" x="0" y="8" /><rect width="5" height="5" x="8" y="8" /></svg></a><a href="#" class="prev">&lt;</a> <a href="#" class="pause">&#9614;&#9614;</a> <a href="#" class="next">&gt;</a></nav>');
 
-				$fullscreen_gallery.before('<ul id="gallerythumbs">').cycle({
+                if (typeof jQuery.fn.cycle === 'function') {
+                $fullscreen_gallery.before('<ul id="gallerythumbs">').cycle({
 					slideExpr: '.gallery-item',
 					fx:        'fade', 
 		   			speed:     1000, 
@@ -27,7 +28,10 @@
 					prev:    '#gallerynav .prev',
 			  		next:    '#gallerynav .next'
 				});
-				var paused = false;
+                } else {
+                    // jQuery Cycle plugin missing; skip slideshow init
+                }
+                var paused = false;
 				jQuery('#gallerynav .pause').on('click', function() { 
 					if ( !paused ) {
 						$fullscreen_gallery.cycle('pause');
@@ -168,16 +172,18 @@
 
 		
 		// before-after
-		var $before_after = jQuery('.before-after.gallery');
-		if ( $before_after.length > 0 ) {
-			$before_after.imageReveal({
-				barWidth: 4,
-				touchBarWidth: 50,
-				startPosition: 0.5,
-				width: jQuery('.before-after img').width(),
-				height:  jQuery('.before-after img').height()
-			});
-		}
+        var $before_after = jQuery('.before-after.gallery');
+        if ( $before_after.length > 0 && typeof jQuery.fn.imageReveal === 'function' ) {
+            $before_after.imageReveal({
+                barWidth: 4,
+                touchBarWidth: 50,
+                startPosition: 0.5,
+                width: jQuery('.before-after img').width(),
+                height:  jQuery('.before-after img').height()
+            });
+        } else if ($before_after.length > 0) {
+            // imageReveal plugin missing; skip init gracefully
+        }
 
 		// changing blog layout
 		var $blog_layout = jQuery('#blog-timeline');
