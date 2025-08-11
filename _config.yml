@@ -1,13 +1,13 @@
 # Site settings
 title: PHOTORAMA
-email: ""
+email: "operationlora@gmail.com"
 description: "Photo Journal"
 # Set to your GitHub Pages user URL (no trailing slash)
 url: "https://operationlora.github.io"
 baseurl: ""
 facebook_username: ""
-twitter_username: ""
-instagram_username: ""
+twitter_username: "OperationLora"
+instagram_username: "operationlora"
 github_username:  ""
 deviantart_username: ""
 flickr_username: ""
@@ -18,10 +18,10 @@ share: true
 
 # Owner/author information
 owner:
-  name:   photorama
+  name:   lora
   avatar: avatar.png
   favicon: favicon.ico
-  info: photography website template
+  info: operationlora
 
 # Commerce
 currency: USD
