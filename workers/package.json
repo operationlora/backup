@@ -1,0 +1,8 @@
+{
+  "name": "photorama-workers",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker for Stripe webhook forwarding to SendGrid",
+  "version": "0.1.0"
+}
+

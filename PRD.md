@@ -36,19 +36,22 @@
 
 ## 三、資料結構
 
-### 3.1 商品資料（_data/products.yml）
+### 3.1 商品資料（_shop/ 集合文件）
 ```yaml
-- id: "candle-rose-large"
-  title: "玫瑰香氛蠟燭（大）"
-  price: 450
-  image: "/assets/images/candle-rose.jpg"
-  category: "candle"
-  description: "法式玫瑰香調，燃燒時間約 40 小時"
-  stripe_link: "https://buy.stripe.com/xxxxx"
-  # 預留升級欄位
-  tags: ["香氛", "蠟燭", "玫瑰"]
-  featured: true
-  stock_status: "in_stock"
+---
+layout: product
+title: "玫瑰香氛蠟燭（大）"
+product_name: "玫瑰香氛蠟燭（大）"
+product_price: 450
+image: "/assets/images/candle-rose.jpg"
+category: "candle"
+description: "法式玫瑰香調，燃燒時間約 40 小時"
+stripe_link: "https://buy.stripe.com/xxxxx"
+tags: ["香氛", "蠟燭", "玫瑰"]
+featured: true
+stock_status: "in_stock"
+---
+商品敘述內容（支援 Markdown）。
 ```
 
 ### 3.2 分類定義
@@ -64,7 +67,7 @@ categories:
 ```
 ├── _config.yml
 ├── _data/
-│   ├── products.yml
+│   ├── shop.yml
 │   └── categories.yml
 ├── _layouts/
 │   ├── default.html
@@ -76,20 +79,20 @@ categories:
 │   └── product-card.html
 ├── assets/
 │   ├── css/main.scss
-│   ├── js/search.js
+│   ├── js/shop-filter.js
 │   └── images/
 ├── workers/
 │   ├── webhook-handler.js
 │   ├── wrangler.toml
 │   └── package.json
 ├── index.html
-└── products/
-    └── [product-id].html
+└── shop/
+    └── [shop-item-id].html
 ```
 
 ## 五、關鍵頁面
 
-### 5.1 商品列表頁（index.html）
+### 5.1 商品列表頁（shop/index.html）
 ```html
 ---
 layout: home
@@ -163,9 +166,9 @@ baseurl: ""
 url: "https://username.github.io"
 
 collections:
-  products:
+  shop:
     output: true
-    permalink: /products/:name/
+    permalink: /shop/:path/
 
 plugins:
   - jekyll-feed

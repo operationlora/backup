@@ -1,0 +1,16 @@
+# Cloudflare Workers configuration for Stripe webhook handler
+
+name = "photorama-webhook"
+main = "webhook-handler.js"
+compatibility_date = "2024-08-01"
+
+# Set secrets via CLI (do not commit values):
+#   wrangler secret put STRIPE_WEBHOOK_SECRET
+#   wrangler secret put SENDGRID_API_KEY
+#   wrangler secret put SELLER_EMAIL
+
+# Optional: add routes when binding to a zone
+# [[routes]]
+# pattern = "example.com/webhook/stripe"
+# zone_id = "YOUR_ZONE_ID"
+

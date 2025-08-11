@@ -9,15 +9,15 @@ Tip: Convert each item into a GitHub Issue and paste the issue link next to it.
 - Assign an owner and due date in the Issue. One PR per task where possible.
 
 ## MVP
-- [ ] Data: add `_data/products.yml` with sample items (id, title, price, image, category, description, stripe_link).
+- [ ] Data: add `_data/shop.yml` with sample items (id, title, price, image, category, description, stripe_link) — or create `_shop/*.md` items with equivalent front matter.
 - [ ] Data: add `_data/categories.yml` based on PRD categories.
-- [ ] Config: add `collections.products` (output: true, permalink: `/products/:name/`) in `_config.yml`.
+- [ ] Config: add `collections.shop` (output: true, permalink: `/shop/:path/`) in `_config.yml`.
 - [ ] Config: enable plugins `jekyll-feed`, `jekyll-sitemap` (and keep `jekyll-paginate`).
 - [ ] Templates: create `_layouts/product.html` with Buy button linking to `stripe_link`.
 - [ ] Templates: create `_includes/product-card.html` for grid/list reuse.
-- [ ] Pages: generate product pages via the `products` collection.
-- [ ] Listing: add `products/index.html` (or update `index.html`) to render a product grid.
-- [ ] Search/Filter: add `assets/js/search.js` for name/category filtering on the listing page.
+- [ ] Pages: generate product pages via the `shop` collection.
+- [ ] Listing: add `shop/index.html` (or update `index.html`) to render a product grid.
+- [ ] Search/Filter: add `js/shop-filter.js` for name/category filtering on the listing page.
 - [ ] Stripe: define a `stripe_link` for each product and add success/cancel pages.
 - [ ] Workers: scaffold `workers/webhook-handler.js` (verify Stripe signature, parse order, call SendGrid).
 - [ ] Workers: add `wrangler.toml` and document env vars (`STRIPE_WEBHOOK_SECRET`, `SENDGRID_API_KEY`, `SELLER_EMAIL`).
@@ -32,11 +32,10 @@ Tip: Convert each item into a GitHub Issue and paste the issue link next to it.
 ## Post-MVP / Enhancements
 - [ ] Analytics: integrate GA4 or Plausible with anonymized IP.
 - [ ] UX: add category pages and breadcrumbs.
-- [ ] Content tooling: add a lightweight CMS flow or scripts to validate product data.
+- [ ] Content tooling: add a lightweight CMS flow or scripts to validate shop data.
 - [ ] R&D: begin Astro + Sveltia CMS migration plan (per PRD 9.x).
 
 ## Project Hygiene
 - [ ] Set up GitHub Project board (columns: Backlog, In Progress, Review, Done, Blocked).
 - [ ] Define labels: `type:feature`, `type:bug`, `type:chore`, `MVP`, `priority:P0/P1/P2`.
 - [ ] Create Milestone "MVP" and assign relevant Issues.
-

@@ -34,4 +34,5 @@
 - Avoid editing or committing generated `_site/` files; change sources instead.
 
 ## Maintenance Notebook Hygiene
-- Keep `UPGRADE_MEMO.md` clean: after completing any task, remove it from the memo’s pending sections. If needed, record it briefly under the memo’s Completed section or in the PR description.
+- Keep `TODO.md` clean: after completing any task, remove it from the memo’s pending sections. If needed, record it briefly under the memo’s Completed section or in the PR description.
+- In case of compatibility issues, refer to the `technical_debt.md` file for documented items.
