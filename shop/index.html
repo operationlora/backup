@@ -8,9 +8,13 @@ header-img: "img/gallery-bg.jpg"
 <section id="content" role="main">
   <div class="wrapper">
     <h2>{{ page.title }}</h2>
+    <div class="photorama-shop-filter" style="margin: 0.5rem 0 1rem;">
+      <label for="shop-filter-q" class="sr-only">Search products</label>
+      <input id="shop-filter-q" type="search" placeholder="Search by name or category" style="width:100%; max-width: 480px; padding: .5rem;">
+    </div>
     <div class="photorama-shop-grid">
       {% for item in site.shop %}
-        <div class="photorama-shop-item">
+        <div class="photorama-shop-item" data-title="{{ item.product_name | escape }}" data-category="{{ item.category | default: '' | escape }}">
           {% assign first_img = item.images | first %}
           {% assign item_image = item.image | default: first_img.image_path | default: first_img %}
           <a href="{{ item.url | relative_url }}">
@@ -25,5 +29,8 @@ header-img: "img/gallery-bg.jpg"
         </div>
       {% endfor %}
     </div>
+    <p id="shop-no-results" style="display:none; margin-top: 1rem;">No items found.</p>
   </div>
 </section>
+
+<script src="{{ site.baseurl }}/js/shop-filter.js"></script>

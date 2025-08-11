@@ -78,29 +78,12 @@ images:
                      </span>
 </a></li>
     {% endif %}
-                    {% if site.flickr_username %}
-						<li>
-  <a href="https://flickr.com/photos/{{ site.flickr_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Flickr">
-              <i class="fa fa-flickr"></i>
-                     </span>
- </a></li>	
-     {% endif %}
-                    {% if site.deviantart_username %}
+                    {% if site.youtube_username %}
 			<li>
-  <a href="https://{{ site.deviantart_username }}.deviantart.com" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="DeviantArt">
-<i class="fa fa-deviantart"></i> </span>
-</a></li>	
+  <a href="https://www.youtube.com/@{{ site.youtube_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="YouTube">
+              <i class="fa fa-youtube-play"></i>
+          </a></li>
     {% endif %}
-                    {% if site.github_username %}
-                <li>
-  <a href="https://github.com/{{ site.github_username }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Github">
-              <i class="fa fa-github"></i>
-                     </span>
-                   {% endif %}
-<li>
-    <a href="mailto:{{ site.email }}" class="footer-icon-link" target="_blank" rel="noopener noreferrer" title="Email">
-              <i class="fa fa-envelope-o"></i></span>
-          </a> </li>
 	
 					
 		</ul>	

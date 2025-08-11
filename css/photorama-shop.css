@@ -78,3 +78,15 @@
 @media (min-width: 1400px) {
   .photorama-shop-grid { gap: 28px; }
 }
+
+/* Shop filter input: ensure readable text on light field */
+.photorama-shop-filter input,
+#shop-filter-q {
+  color: #111 !important;
+  background: #fff !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px;
+}
+.photorama-shop-filter input::placeholder {
+  color: #666;
+}

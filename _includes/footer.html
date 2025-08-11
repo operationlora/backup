@@ -36,52 +36,16 @@
                         </a>
                     </li>
                     {% endif %}
-                    {% if site.flickr_username %}
+                    {% if site.youtube_username %}
                     <li>
-                        <a href="https://flickr.com/photos/{{ site.flickr_username }}" data-toggle="tooltip" title="Flickr" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.youtube.com/@{{ site.youtube_username }}" data-toggle="tooltip" title="YouTube" target="_blank" rel="noopener noreferrer">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flickr fa-stack-1x fa-inverse"></i>
+                                <i class="fa fa-youtube-play fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
                     {% endif %}
-                    {% if site.deviantart_username %}
-                    <li>
-                        <a href="http://{{ site.deviantart_username }}.deviantart.com" target="_blank" rel="noopener noreferrer">
-                            <span class="fa-stack fa-lg" data-toggle="tooltip" title="Deviantart">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-deviantart fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if site.github_username %}
-                    <li>
-                        <a href="https://github.com/{{ site.github_username }}" data-toggle="tooltip" title="Github" target="_blank" rel="noopener noreferrer">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}
-            <li>
-    <a href="mailto:{{ site.email }}" data-toggle="tooltip" title="Email">
-                       <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-</span>
-          </a> </li>
-
-         <li>
-                        <a href="{{ "/feed.xml" | prepend: site.baseurl }}" data-toggle="tooltip" title="Feed">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
                 </ul>
                 <p class="copyright text-muted">Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}</p>
 <center><h6><p>Powered by <a href="https://github.com/jekyll/">Jekyll</a>.</p></h6></center>

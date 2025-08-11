@@ -38,22 +38,10 @@ permalink: /search/
 <input type="text" id="search-input" placeholder="Enter keywords...">
 <ul id="results-container" style="list-style-type: none;"></ul>    
 
-<!-- Script pointing to jekyll-search.js -->
-<script src="{{ site.baseurl }}/js/jekyll-search.js" type="text/javascript"></script>
-
-
-    <script type="text/javascript">
-      SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('results-container'),
-        json: '{{ site.baseurl }}/search.json',
-        searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
-        noResultsText: 'No results found',
-        limit: 10,
-        fuzzy: true,
-        exclude: ['Welcome']
-      })
-    </script>
+{%- comment -%}
+  Temporarily disable missing search script to avoid console errors.
+  When ready, restore a working search implementation (e.g., SimpleJekyllSearch or super-search).
+{%- endcomment -%}
 
 <br>
   <div id="tags">
@@ -101,6 +89,5 @@ permalink: /search/
     margin-right: 12px;
 }
 </style>
-
 
 

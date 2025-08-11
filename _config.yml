@@ -11,6 +11,7 @@ instagram_username: ""
 github_username:  ""
 deviantart_username: ""
 flickr_username: ""
+youtube_username: ""
 discus_shortname: ""
 share: true
 
@@ -42,6 +43,8 @@ nav:
   - JOURNAL: "/journal/"
   - ABOUT: "/about/"
   - SHOP: "/shop/"
+  - PRIVACY: "/privacy/"
+  - TERMS: "/terms/"
 
 # All translation keys
 translations:
@@ -63,6 +66,8 @@ categories_path: "/journal/category/"
 tags_path: "/journal/tag/"
 plugins:
   - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
 # Runtime toggles
