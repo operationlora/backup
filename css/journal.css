@@ -210,3 +210,24 @@ body.journal .post-preview .post-meta {
   font-size: 10px;
   margin: 0 0 0 1em;
 }
+
+/* Journal quick search input styling */
+.journal-filter {
+  margin: 0.5rem 0 1rem;
+}
+.journal-filter #journal-filter-q {
+  width: 100%;
+  max-width: 520px;
+  padding: .5rem;
+  color: #111;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.journal-filter #journal-filter-q::placeholder {
+  color: #666;
+}
+.journal-filter #journal-no-results {
+  display: none;
+  margin-top: 0.5rem;
+}
